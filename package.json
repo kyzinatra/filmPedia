@@ -1,0 +1,55 @@
+{
+	"name": "filmpedia",
+	"version": "1.0.0",
+	"description": "",
+	"main": "src/index.ts",
+	"scripts": {
+		"dev": "webpack serve --open --config ./webpack/webpack.dev.conf.js",
+		"build": "webpack --config ./webpack/webpack.build.conf.js",
+		"start:server": "ts-node server/index.ts",
+		"live:server": "nodemon server/index.ts"
+	},
+	"browserslist": [
+		"> 1%",
+		"last 4 versions"
+	],
+	"author": "",
+	"license": "ISC",
+	"dependencies": {
+		"nodemon": "^2.0.15",
+		"react": "^17.0.2",
+		"react-dom": "^17.0.2"
+	},
+	"devDependencies": {
+		"@babel/cli": "^7.16.8",
+		"@babel/core": "^7.16.12",
+		"@babel/plugin-proposal-object-rest-spread": "^7.16.7",
+		"@babel/preset-env": "^7.16.11",
+		"@babel/preset-react": "^7.16.7",
+		"@babel/register": "^7.17.7",
+		"@types/react": "^17.0.41",
+		"@types/react-dom": "^17.0.14",
+		"autoprefixer": "^10.4.2",
+		"babel-loader": "^8.2.3",
+		"clean-webpack-plugin": "^4.0.0",
+		"copy-webpack-plugin": "^10.2.2",
+		"css-loader": "^6.5.1",
+		"cssnano": "^5.0.17",
+		"file-loader": "^6.2.0",
+		"html-webpack-plugin": "^5.5.0",
+		"ignore-styles": "^5.0.1",
+		"mini-css-extract-plugin": "^2.5.3",
+		"node-sass": "^7.0.1",
+		"postcss": "^8.4.6",
+		"postcss-loader": "^6.2.1",
+		"pug-loader": "^2.4.0",
+		"sass": "^1.49.0",
+		"sass-loader": "^12.4.0",
+		"ts-loader": "^9.2.8",
+		"typescript": "^4.6.2",
+		"webpack": "^5.67.0",
+		"webpack-cli": "^4.9.2",
+		"webpack-dev-server": "^4.7.3",
+		"webpack-merge": "^5.8.0"
+	}
+}

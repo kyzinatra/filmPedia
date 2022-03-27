@@ -1,4 +1,4 @@
-import React, { FC, useRef, useState } from "react";
+import React, { FC, useRef, useState, Dispatch, useEffect } from "react";
 
 import SearchIcon from "@mui/icons-material/Search";
 import FavoriteIcon from "@mui/icons-material/Favorite";
@@ -13,52 +13,69 @@ import NavButton from "../Nav/NavButton/NavButton";
 import Slide from "@mui/material/Slide/Slide";
 import Button from "@mui/material/Button/Button";
 import Fade from "@mui/material/Fade/Fade";
+import Box from "@mui/material/Box/Box";
+
+import useMediaQuery from "@mui/material/useMediaQuery";
+import useTheme from "@mui/material/styles/useTheme";
+import ClickAwayListener from "@mui/base/ClickAwayListener/ClickAwayListener";
 
 interface IHeader {
   isAuth?: boolean;
 }
 
 const Header: FC<IHeader> = ({ isAuth }) => {
+  const [isHeaderOpen, setHeaderOpen] = useState(true);
+
+  const theme = useTheme();
+  const mediaSize = useMediaQuery(theme.breakpoints.down("sm"));
   const StyledSearchIcon = <SearchIcon sx={{ fontSize: "1.7rem" }} />;
   const StyledFavoriteIcon = <FavoriteIcon sx={{ fontSize: "1.7rem" }} />;
   const StyledRestoreIcon = <RestoreIcon sx={{ fontSize: "1.7rem" }} />;
   const StyledSettingsIcon = <SettingsIcon sx={{ fontSize: "1.7rem" }} />;
-  const [isOpen, setOpen] = useState(true);
+
+  function handleClickAway(event: MouseEvent | TouchEvent): void {
+    const element = event.target;
+    console.log(element instanceof Element, element);
+    if (element instanceof Element) {
+      const isNav = element.closest("#headerNav");
+      if (mediaSize && isHeaderOpen && !isNav) setHeaderOpen((a) => !a);
+    }
+  }
+
+  useEffect(() => {
+    if (!mediaSize && !isHeaderOpen) setHeaderOpen(true);
+  }, [mediaSize]);
 
   return (
-    <>
-      <Slide in={isOpen} direction="right" appear={false}>
-        <header className="header__wrapper">
-          <div className="header">
-            <div className="header__profile">
-              <Avatar title="Jonh" />
-            </div>
-            <div className="header__nav">
-              <NavButton title="Search" icon={StyledSearchIcon} />
-              <NavButton title="Search" icon={StyledFavoriteIcon} />
-              <NavButton title="Search" icon={StyledRestoreIcon} />
-              <NavButton title="Search" icon={StyledSettingsIcon} />
-            </div>
-            <div className="header__hide">
-              <Button
-                variant="text"
-                sx={{ color: "white" }}
-                onClick={() => setOpen((a) => !a)}
-              >
-                Hide
-              </Button>
-            </div>
-          </div>
-        </header>
-      </Slide>
-      <Fade in={!isOpen}>
+    <Box id="headerNav">
+      <ClickAwayListener onClickAway={handleClickAway}>
+        <Slide in={isHeaderOpen} direction="right" appear={false}>
+          <header className="header__wrapper">
+            <Box className="header">
+              <div className="header__profile">
+                <Avatar title="Jonh" />
+              </div>
+              <div className="header__nav">
+                <NavButton title="Search" icon={StyledSearchIcon} />
+                <NavButton title="Favorite" icon={StyledFavoriteIcon} />
+                <NavButton title="History" icon={StyledRestoreIcon} />
+                <NavButton title="Settings" icon={StyledSettingsIcon} />
+              </div>
+            </Box>
+          </header>
+        </Slide>
+      </ClickAwayListener>
+      <Fade in={!isHeaderOpen}>
         <header className="header__mobile">
-          <IconButton aria-label="open menu" onClick={() => setOpen((a) => !a)}>
-            <MenuIcon sx={{ fontSize: "2rem", color: "black" }} />
+          <IconButton
+            aria-label="open menu"
+            onClick={() => setHeaderOpen((a) => !a)}
+          >
+            <MenuIcon sx={{ fontSize: "3rem", color: "black" }} />
           </IconButton>
         </header>
       </Fade>
-    </>
+    </Box>
   );
 };
 

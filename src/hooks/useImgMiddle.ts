@@ -1,4 +1,4 @@
-import { useEffect, useState, Dispatch, SetStateAction } from "react";
+import { useEffect, useState, Dispatch, SetStateAction, useMemo } from "react";
 
 const getContext = (width: string, height: string) => {
   const canvas = document.createElement("canvas");
@@ -117,7 +117,11 @@ const defaultOpts: MainOptions = {
 export default function useImgMiddle(
   src: string,
   options: MainOptions = defaultOpts
-): [{ color: string; count: number }[], Dispatch<SetStateAction<string>>] {
+): [
+  { color: string; count: number }[],
+  Dispatch<SetStateAction<string>>,
+  string
+] {
   const {
     ignore = [],
     optimization: { scale = 0.5, error = 0, skip },
@@ -136,10 +140,11 @@ export default function useImgMiddle(
     throw TypeError(
       `You set optimization params out of range, it have to be between 0 and 1`
     );
-  useEffect(() => {
+  useMemo(() => {
+    console.log("calc");
     getImageData(path, scale).then((data) => {
       setColor(getCounts(data, { ignore, error, skipTransparentPixels, skip }));
     });
-  }, [path]);
-  return [color, setPath];
+  }, [path, scale, error, skip]);
+  return [color, setPath, path];
 }

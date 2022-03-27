@@ -2,7 +2,7 @@ import React, { FC, FocusEvent } from "react";
 
 import "./Avatar.sass";
 
-import img from "../../../static/avatar.png";
+import img from "../../../static/avatar3.png";
 import useImgMiddle from "../../../hooks/useImgMiddle";
 
 interface IAvatar {

@@ -24,10 +24,10 @@ interface IHeader {
 }
 
 const Header: FC<IHeader> = ({ isAuth }) => {
-  const [isHeaderOpen, setHeaderOpen] = useState(true);
-
   const theme = useTheme();
   const mediaSize = useMediaQuery(theme.breakpoints.down("sm"));
+  const [isHeaderOpen, setHeaderOpen] = useState(false);
+
   const StyledSearchIcon = <SearchIcon sx={{ fontSize: "1.7rem" }} />;
   const StyledFavoriteIcon = <FavoriteIcon sx={{ fontSize: "1.7rem" }} />;
   const StyledRestoreIcon = <RestoreIcon sx={{ fontSize: "1.7rem" }} />;
@@ -35,7 +35,6 @@ const Header: FC<IHeader> = ({ isAuth }) => {
 
   function handleClickAway(event: MouseEvent | TouchEvent): void {
     const element = event.target;
-    console.log(element instanceof Element, element);
     if (element instanceof Element) {
       const isNav = element.closest("#headerNav");
       if (mediaSize && isHeaderOpen && !isNav) setHeaderOpen((a) => !a);
@@ -43,7 +42,8 @@ const Header: FC<IHeader> = ({ isAuth }) => {
   }
 
   useEffect(() => {
-    if (!mediaSize && !isHeaderOpen) setHeaderOpen(true);
+    if (mediaSize) setHeaderOpen(false);
+    else setHeaderOpen(true);
   }, [mediaSize]);
 
   return (

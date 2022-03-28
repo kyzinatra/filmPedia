@@ -119,12 +119,12 @@ export default function useImgMiddle(
   options: MainOptions = defaultOpts
 ): [
   { color: string; count: number }[],
-  Dispatch<SetStateAction<string>>,
-  string
+  string,
+  Dispatch<SetStateAction<string>>
 ] {
   const {
     ignore = [],
-    optimization: { scale = 0.5, error = 0, skip },
+    optimization: { scale = 0, error = 0, skip = 1 },
     skipTransparentPixels,
   } = options;
 
@@ -141,10 +141,9 @@ export default function useImgMiddle(
       `You set optimization params out of range, it have to be between 0 and 1`
     );
   useMemo(() => {
-    console.log("calc");
     getImageData(path, scale).then((data) => {
       setColor(getCounts(data, { ignore, error, skipTransparentPixels, skip }));
     });
   }, [path, scale, error, skip]);
-  return [color, setPath, path];
+  return [color, path, setPath];
 }

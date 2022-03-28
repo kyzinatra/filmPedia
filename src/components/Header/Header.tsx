@@ -8,8 +8,8 @@ import SettingsIcon from "@mui/icons-material/Settings";
 import IconButton from "@mui/material/IconButton/IconButton";
 import "./Header.sass";
 
-import Avatar from "../Nav/Avatar/Avatar";
-import NavButton from "../Nav/NavButton/NavButton";
+import Avatar from "./Nav/Avatar/Avatar";
+import NavButton from "./Nav/NavButton/NavButton";
 import Slide from "@mui/material/Slide/Slide";
 import Button from "@mui/material/Button/Button";
 import Fade from "@mui/material/Fade/Fade";
@@ -50,7 +50,7 @@ const Header: FC<IHeader> = ({ isAuth }) => {
     <Box id="headerNav">
       <ClickAwayListener onClickAway={handleClickAway}>
         <Slide in={isHeaderOpen} direction="right" appear={false}>
-          <header className="header__wrapper">
+          <nav className="header__wrapper">
             <Box className="header">
               <div className="header__profile">
                 <Avatar title="Jonh" />
@@ -62,14 +62,14 @@ const Header: FC<IHeader> = ({ isAuth }) => {
                 <NavButton title="Settings" icon={StyledSettingsIcon} />
               </div>
             </Box>
-          </header>
+          </nav>
         </Slide>
       </ClickAwayListener>
       <Fade in={!isHeaderOpen}>
         <header className="header__mobile">
           <IconButton
             aria-label="open menu"
-            onClick={() => setHeaderOpen((a) => !a)}
+            onClick={() => mediaSize && setHeaderOpen((a) => !a)}
           >
             <MenuIcon sx={{ fontSize: "3rem", color: "black" }} />
           </IconButton>

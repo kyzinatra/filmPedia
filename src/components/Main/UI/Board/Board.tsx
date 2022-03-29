@@ -1,7 +1,6 @@
 import React, { FC, useEffect, useState } from "react";
 import Card from "../Card/Card";
 import Error from "../../../Error/Error";
-import Skeleton from "@mui/material/Skeleton/Skeleton";
 
 import {
   Swiper as SwiperComponent,
@@ -15,13 +14,9 @@ import "swiper/css/navigation";
 import "./Board.sass";
 
 import { useFilm } from "../../../../hooks/UseFilm";
-import useTheme from "@mui/system/useTheme";
 
-import { FilmPosterWidth } from "../../../../ts/FilmSizes";
 import { SliderSettings } from "../../../../theme/theme";
 import { IGenresProps, ITrendFilmResponse } from "../../../../types/film";
-import Snackbar from "@mui/material/Snackbar/Snackbar";
-import Alert from "@mui/material/Alert/Alert";
 
 interface IBoard {
   title?: string;

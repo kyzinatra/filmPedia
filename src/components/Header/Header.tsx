@@ -1,4 +1,4 @@
-import React, { FC, useRef, useState, Dispatch, useEffect } from "react";
+import React, { FC, useState, useEffect } from "react";
 
 import SearchIcon from "@mui/icons-material/Search";
 import FavoriteIcon from "@mui/icons-material/Favorite";
@@ -11,7 +11,6 @@ import "./Header.sass";
 import Avatar from "./Nav/Avatar/Avatar";
 import NavButton from "./Nav/NavButton/NavButton";
 import Slide from "@mui/material/Slide/Slide";
-import Button from "@mui/material/Button/Button";
 import Fade from "@mui/material/Fade/Fade";
 import Box from "@mui/material/Box/Box";
 

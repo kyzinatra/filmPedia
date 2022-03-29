@@ -4,7 +4,6 @@ import "./Card.sass";
 import { FilmPosterWidth } from "../../../../ts/FilmSizes";
 import Skeleton from "@mui/material/Skeleton/Skeleton";
 import poster from "../../../../static/filmMock.png";
-import { useFilm } from "../../../../hooks/UseFilm";
 
 interface ICard {
   image?: string;

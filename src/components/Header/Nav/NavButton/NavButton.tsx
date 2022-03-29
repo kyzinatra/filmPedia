@@ -1,8 +1,6 @@
 import React, { FC } from "react";
 
 import Button from "@mui/material/Button/Button";
-import { OverridableComponent } from "@mui/material/OverridableComponent";
-import { SvgIconTypeMap } from "@mui/material/SvgIcon/SvgIcon";
 
 interface INavButton {
   title: string;

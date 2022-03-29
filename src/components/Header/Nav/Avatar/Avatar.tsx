@@ -1,10 +1,8 @@
-import React, { FC, FocusEvent, useEffect, useState } from "react";
+import React, { FC, useState } from "react";
 
 import "./Avatar.sass";
 
 import img1 from "../../../../static/avatar3.png";
-import img2 from "../../../../static/avatar.png";
-import img3 from "../../../../static/avatar2.png";
 import useImgMiddle from "../../../../hooks/useImgMiddle";
 
 interface IAvatar {

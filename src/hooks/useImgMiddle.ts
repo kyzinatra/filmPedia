@@ -1,4 +1,4 @@
-import { useEffect, useState, Dispatch, SetStateAction, useMemo } from "react";
+import { useState, Dispatch, SetStateAction, useMemo } from "react";
 
 const getContext = (width: string, height: string) => {
   const canvas = document.createElement("canvas");

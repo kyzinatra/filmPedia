@@ -1,1 +1,1 @@
-export const FilmPosterWidth = 150;
+export const FilmPosterWidth = 180;

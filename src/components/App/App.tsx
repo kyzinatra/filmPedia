@@ -1,4 +1,4 @@
-import React, { FC, StrictMode, useState } from "react";
+import React, { FC, StrictMode, useEffect, useState } from "react";
 import "./App.sass";
 
 import Header from "../Header/Header";

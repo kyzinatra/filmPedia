@@ -25,7 +25,7 @@ const NavButton: FC<INavButton> = ({ title, icon: Icon }) => {
       }}
     >
       <div>{Icon}</div>
-      <span className="navButton__title">Search</span>
+      <span className="navButton__title">{title}</span>
     </Button>
   );
 };

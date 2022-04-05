@@ -96,7 +96,7 @@ const Board: FC<IBoard> = ({ title, url, query, genres, setModalId }) => {
   });
   return (
     <>
-      <div className="board">
+      <section className="board">
         <h2 className="board__title">{title}</h2>
         <div className="board__body">
           <SwiperComponent
@@ -126,7 +126,7 @@ const Board: FC<IBoard> = ({ title, url, query, genres, setModalId }) => {
             )}
           </SwiperComponent>
         </div>
-      </div>
+      </section>
       <Error err={err} />
     </>
   );

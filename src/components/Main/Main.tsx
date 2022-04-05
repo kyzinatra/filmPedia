@@ -43,7 +43,7 @@ const Main: FC<IMain> = ({ isSearchOpen }) => {
   // Search
   const [searchQuery, setSearchQuery] = useState("");
   return (
-    <div
+    <main
       className="main"
       style={{
         marginLeft: isMobile ? "0" : "120px",
@@ -91,7 +91,7 @@ const Main: FC<IMain> = ({ isSearchOpen }) => {
           type={modalInfo.type}
         />
       )}
-    </div>
+    </main>
   );
 };
 

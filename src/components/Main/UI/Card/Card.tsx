@@ -8,21 +8,23 @@ import poster from "../../../../static/filmMock.png";
 interface ICard {
   image?: string;
   alt?: string;
-  className?: string;
   title?: string;
   isView?: boolean;
   genre?: string;
   isMock?: boolean;
+  rate?: number;
+  setModalId: () => void;
 }
 
 const Card: FC<ICard> = ({
   image = "",
   alt,
-  className,
   isView,
   title,
   genre,
   isMock,
+  setModalId,
+  rate,
 }) => {
   const [onLoad, setOnLoad] = useState<string>("");
   const FilmPosterHeight = Math.round(FilmPosterWidth * Math.sqrt(2));
@@ -36,40 +38,62 @@ const Card: FC<ICard> = ({
     } else if (!image) setOnLoad(poster);
   }, [image, isView]);
 
+  let bgColor;
+  if ((rate || 0) > 7) bgColor = "#3AB13A";
+  else if ((rate || 0) > 4.9 || !rate) bgColor = "#AAAAAA";
+  else bgColor = "#f00";
   return (
-    <div className={className}>
-      <div
-        className={"card"}
-        style={{
-          padding: "15px",
-        }}
-      >
-        {onLoad && !isMock ? (
-          <>
-            <img
-              src={onLoad}
-              alt={alt}
-              style={{
-                width: FilmPosterWidth,
-                height: FilmPosterHeight,
-              }}
-            />
-            <div className="card__title">
-              <span>{title}</span>
-            </div>
-            <div className="card__genre">
-              <span>{genre}</span>
-            </div>
-          </>
-        ) : (
+    <div
+      className={"card"}
+      style={{
+        padding: "15px",
+      }}
+    >
+      {onLoad && !isMock ? (
+        <div className="card__content">
+          {!!rate && (
+            <span className="card__rate" style={{ backgroundColor: bgColor }}>
+              {rate}
+            </span>
+          )}
+          <img
+            src={onLoad}
+            alt={alt}
+            style={{
+              width: FilmPosterWidth,
+              height: FilmPosterHeight,
+            }}
+            onClick={() => setModalId()}
+          />
+          <div className="card__title">
+            <span>{title}</span>
+          </div>
+          <div className="card__genre">
+            <span>{genre}</span>
+          </div>
+        </div>
+      ) : (
+        <>
           <Skeleton
             variant="rectangular"
             width={FilmPosterWidth}
             sx={{ bgcolor: "#012a33" }}
             height={FilmPosterHeight}
           />
-        )}
-      </div>
+          <Skeleton
+            variant="rectangular"
+            width={FilmPosterWidth}
+            sx={{ bgcolor: "#012a33", mt: "10px" }}
+            height={20}
+          />
+          <Skeleton
+            variant="rectangular"
+            width={FilmPosterWidth * 0.7}
+            sx={{ bgcolor: "#012a33", mt: "10px" }}
+            height={10}
+          />
+        </>
+      )}
     </div>
   );
 };

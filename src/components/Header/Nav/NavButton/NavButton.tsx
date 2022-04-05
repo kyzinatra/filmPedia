@@ -5,11 +5,13 @@ import Button from "@mui/material/Button/Button";
 interface INavButton {
   title: string;
   icon: React.ReactNode;
+  onClick?: () => void;
 }
 
-const NavButton: FC<INavButton> = ({ title, icon: Icon }) => {
+const NavButton: FC<INavButton> = ({ title, icon: Icon, onClick }) => {
   return (
     <Button
+      onClick={onClick}
       sx={{
         "backgroundColor": "#092A37",
         "color": "white",

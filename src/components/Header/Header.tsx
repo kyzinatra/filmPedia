@@ -3,7 +3,8 @@ import React, { FC, useState, useEffect } from "react";
 import SearchIcon from "@mui/icons-material/Search";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import MenuIcon from "@mui/icons-material/Menu";
-import RestoreIcon from "@mui/icons-material/Restore";
+
+import ChatIcon from "@mui/icons-material/Chat";
 import SettingsIcon from "@mui/icons-material/Settings";
 import IconButton from "@mui/material/IconButton/IconButton";
 import "./Header.sass";
@@ -20,30 +21,31 @@ import ClickAwayListener from "@mui/base/ClickAwayListener/ClickAwayListener";
 
 interface IHeader {
   isAuth?: boolean;
+  ClickHandler: () => void;
 }
 
-const Header: FC<IHeader> = ({ isAuth }) => {
+const Header: FC<IHeader> = ({ isAuth, ClickHandler }) => {
   const theme = useTheme();
-  const mediaSize = useMediaQuery(theme.breakpoints.down("sm"));
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const [isHeaderOpen, setHeaderOpen] = useState(false);
 
   const StyledSearchIcon = <SearchIcon sx={{ fontSize: "1.7rem" }} />;
   const StyledFavoriteIcon = <FavoriteIcon sx={{ fontSize: "1.7rem" }} />;
-  const StyledRestoreIcon = <RestoreIcon sx={{ fontSize: "1.7rem" }} />;
+  const StyledChatIcon = <ChatIcon sx={{ fontSize: "1.7rem" }} />;
   const StyledSettingsIcon = <SettingsIcon sx={{ fontSize: "1.7rem" }} />;
 
   function handleClickAway(event: MouseEvent | TouchEvent): void {
     const element = event.target;
     if (element instanceof Element) {
       const isNav = element.closest("#headerNav");
-      if (mediaSize && isHeaderOpen && !isNav) setHeaderOpen((a) => !a);
+      if (isMobile && isHeaderOpen && !isNav) setHeaderOpen((a) => !a);
     }
   }
 
   useEffect(() => {
-    if (mediaSize) setHeaderOpen(false);
+    if (isMobile) setHeaderOpen(false);
     else setHeaderOpen(true);
-  }, [mediaSize]);
+  }, [isMobile]);
 
   return (
     <Box id="headerNav">
@@ -55,9 +57,13 @@ const Header: FC<IHeader> = ({ isAuth }) => {
                 <Avatar title="Jonh" />
               </div>
               <div className="header__nav">
-                <NavButton title="Search" icon={StyledSearchIcon} />
+                <NavButton
+                  title="Search"
+                  onClick={ClickHandler}
+                  icon={StyledSearchIcon}
+                />
                 <NavButton title="Favorite" icon={StyledFavoriteIcon} />
-                <NavButton title="History" icon={StyledRestoreIcon} />
+                <NavButton title="Chat" icon={StyledChatIcon} />
                 <NavButton title="Settings" icon={StyledSettingsIcon} />
               </div>
             </Box>
@@ -68,9 +74,9 @@ const Header: FC<IHeader> = ({ isAuth }) => {
         <header className="header__mobile">
           <IconButton
             aria-label="open menu"
-            onClick={() => mediaSize && setHeaderOpen((a) => !a)}
+            onClick={() => isMobile && setHeaderOpen((a) => !a)}
           >
-            <MenuIcon sx={{ fontSize: "3rem", color: "black" }} />
+            <MenuIcon sx={{ fontSize: "3rem", color: "white" }} />
           </IconButton>
         </header>
       </Fade>

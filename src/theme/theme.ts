@@ -6,9 +6,11 @@ export const SliderSettings = {
   breakpoints: {
     [theme.breakpoints.values.xs]: {
       slidesPerView: 2,
+      navigation: false,
     },
     [theme.breakpoints.values.sm]: {
       slidesPerView: 3,
+      navigation: false,
     },
 
     [theme.breakpoints.values.md]: {

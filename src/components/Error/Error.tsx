@@ -8,9 +8,8 @@ interface IError {
 
 const Error: FC<IError> = ({ err }) => {
   const [isErrWindowOpen, setErrorWindowState] = useState(false);
-  useEffect(
-    () => (err ? setErrorWindowState(true) : setErrorWindowState(false)),
-    [err]
+  useEffect(() =>
+    err ? setErrorWindowState(true) : setErrorWindowState(false)
   );
   return (
     <Snackbar

@@ -48,39 +48,41 @@ const Header: FC<IHeader> = ({ isAuth, ClickHandler }) => {
   }, [isMobile]);
 
   return (
-    <Box id="headerNav">
-      <ClickAwayListener onClickAway={handleClickAway}>
-        <Slide in={isHeaderOpen} direction="right" appear={false}>
-          <nav className="header__wrapper">
-            <Box className="header">
-              <div className="header__profile">
-                <Avatar title="Jonh" />
-              </div>
-              <div className="header__nav">
-                <NavButton
-                  title="Search"
-                  onClick={ClickHandler}
-                  icon={StyledSearchIcon}
-                />
-                <NavButton title="Favorite" icon={StyledFavoriteIcon} />
-                <NavButton title="Chat" icon={StyledChatIcon} />
-                <NavButton title="Settings" icon={StyledSettingsIcon} />
-              </div>
-            </Box>
-          </nav>
-        </Slide>
-      </ClickAwayListener>
-      <Fade in={!isHeaderOpen}>
-        <header className="header__mobile">
-          <IconButton
-            aria-label="open menu"
-            onClick={() => isMobile && setHeaderOpen((a) => !a)}
-          >
-            <MenuIcon sx={{ fontSize: "3rem", color: "white" }} />
-          </IconButton>
-        </header>
-      </Fade>
-    </Box>
+    <>
+      <Box id="headerNav" component="header">
+        <ClickAwayListener onClickAway={handleClickAway}>
+          <Slide in={isHeaderOpen} direction="right" appear={false}>
+            <nav className="header__wrapper">
+              <Box className="header">
+                <div className="header__profile">
+                  <Avatar title="Jonh" />
+                </div>
+                <div className="header__nav">
+                  <NavButton
+                    title="Search"
+                    onClick={ClickHandler}
+                    icon={StyledSearchIcon}
+                  />
+                  <NavButton title="Favorite" icon={StyledFavoriteIcon} />
+                  <NavButton title="Chat" icon={StyledChatIcon} />
+                  <NavButton title="Settings" icon={StyledSettingsIcon} />
+                </div>
+              </Box>
+            </nav>
+          </Slide>
+        </ClickAwayListener>
+        <Fade in={!isHeaderOpen}>
+          <header className="header__mobile">
+            <IconButton
+              aria-label="open menu"
+              onClick={() => isMobile && setHeaderOpen((a) => !a)}
+            >
+              <MenuIcon sx={{ fontSize: "3rem", color: "white" }} />
+            </IconButton>
+          </header>
+        </Fade>
+      </Box>
+    </>
   );
 };
 

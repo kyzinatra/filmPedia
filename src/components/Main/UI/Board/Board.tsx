@@ -18,7 +18,8 @@ import {
   ITrendFilm,
 } from "../../../../types/film";
 import ShowMore from "../ShowMore/ShowMore";
-import { useMediaQuery, useTheme } from "@mui/material";
+import useTheme from "@mui/material/styles/useTheme";
+import useMediaQuery from "@mui/material/useMediaQuery/useMediaQuery";
 
 interface IBoard {
   title?: string;

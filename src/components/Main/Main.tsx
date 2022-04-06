@@ -1,5 +1,3 @@
-import useTheme from "@mui/material/styles/useTheme";
-import useMediaQuery from "@mui/material/useMediaQuery/useMediaQuery";
 import React, { FC, useEffect, useState } from "react";
 import { useFilm } from "../../hooks/UseFilm";
 import { IGenresProps } from "../../types/film";
@@ -9,17 +7,27 @@ import Board from "./UI/Board/Board";
 import CardDetail from "./UI/CardDetail/CardDetail";
 import Search from "../Header/Nav/Search/Search";
 import Slide from "@mui/material/Slide/Slide";
-import { useScrollTrigger } from "@mui/material";
+import useScrollTrigger from "@mui/material/useScrollTrigger/useScrollTrigger";
+
+import { useAuth } from "../../hooks/UseAuth";
+import { signOut } from "firebase/auth";
 interface IMain {
   isSearchOpen: boolean;
 }
 
 const Main: FC<IMain> = ({ isSearchOpen }) => {
-  const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
-  const [modalInfo, setModalInfo] = useState<{ id?: number; type?: string }>(
-    {}
-  );
+  const createUser = useAuth((auth, user) => {
+    console.log(auth, user);
+    if (user) {
+      signOut(auth);
+    }
+  });
+  useEffect(() => {
+    if (createUser) createUser();
+  }, [createUser]);
+
+  type modalInfo = { id?: number; type?: string };
+  const [modalInfo, setModalInfo] = useState<modalInfo>({});
   // get Genres
   type genresRq = { genres: IGenresProps[] };
   const [fiimGenres, err1] = useFilm<genresRq, null>("/genre/movie/list", null);
@@ -43,13 +51,7 @@ const Main: FC<IMain> = ({ isSearchOpen }) => {
   // Search
   const [searchQuery, setSearchQuery] = useState("");
   return (
-    <main
-      className="main"
-      style={{
-        marginLeft: isMobile ? "0" : "120px",
-        marginTop: isMobile ? "55px" : "0",
-      }}
-    >
+    <main className="main">
       <Slide in={isSearchOpen || !scroll} appear={false}>
         <Search
           className="main__search"

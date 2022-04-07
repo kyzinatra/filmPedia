@@ -53,7 +53,7 @@ const Card: FC<ICard> = ({
         <div className="card__content">
           {!!rate && (
             <span className="card__rate" style={{ backgroundColor: bgColor }}>
-              {rate}
+              {Math.round(rate * 10) / 10}
             </span>
           )}
           <img

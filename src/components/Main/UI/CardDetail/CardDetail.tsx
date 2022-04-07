@@ -119,7 +119,7 @@ const CardDetail: FC<ICardDetail> = ({ id, type = "movie", resetId }) => {
                   >
                     <a
                       className="modal__watch"
-                      href={`https://www.themoviedb.org/${type}/${id}`}
+                      href={`https://www.themoviedb.org/${type}/${id}/watch?locale=RU`}
                     >
                       <span>Watch</span>
                       <PlayArrowIcon />

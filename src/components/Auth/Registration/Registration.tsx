@@ -5,7 +5,11 @@ import "./Registration.sass";
 import Link from "@mui/material/Link/Link";
 import Box from "@mui/material/Box/Box";
 import { useAuth } from "../../../hooks/UseAuth";
-import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
+import {
+  createUserWithEmailAndPassword,
+  updateProfile,
+  sendEmailVerification,
+} from "firebase/auth";
 
 interface IRegistration {
   changeState: () => void;
@@ -30,13 +34,14 @@ const Registration: FC<IRegistration> = ({ changeState }) => {
 
   const createUser = useAuth((auth) => {
     if (!form.email || !form.password || !form.username) return;
-    console.log(form);
     createUserWithEmailAndPassword(auth, form?.email, form?.password)
       .then(({ user }) => {
+        sendEmailVerification(user).then(() => {
+          console.log("Verify!");
+        });
         return updateProfile(user, { displayName: form.username });
       })
       .catch((error) => {
-        console.log(error.code);
         setError(error.message);
       });
   });
@@ -65,7 +70,6 @@ const Registration: FC<IRegistration> = ({ changeState }) => {
       setForm((a) => ({ ...a, [type]: el.value }));
   }
 
-  console.log("update");
   return (
     <form className="auth" onSubmit={fromSubmitHandler}>
       <h1 className="auth__title">Registration</h1>

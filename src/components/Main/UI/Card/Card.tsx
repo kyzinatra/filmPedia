@@ -30,12 +30,16 @@ const Card: FC<ICard> = ({
   const FilmPosterHeight = Math.round(FilmPosterWidth * Math.sqrt(2));
 
   useEffect(() => {
+    let isMount = true;
     if (isView && image) {
       const toLoad = new Image();
       toLoad.src = IMG_BASE_LINK + image;
-      toLoad.onload = () => setOnLoad(IMG_BASE_LINK + image);
-      toLoad.onerror = () => setOnLoad(poster);
-    } else if (!image) setOnLoad(poster);
+      toLoad.onload = () => isMount && setOnLoad(IMG_BASE_LINK + image);
+      toLoad.onerror = () => isMount && setOnLoad(poster);
+    } else if (!image && isMount) setOnLoad(poster);
+    return () => {
+      isMount = false;
+    };
   }, [image, isView]);
 
   let bgColor;

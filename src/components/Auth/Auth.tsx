@@ -3,11 +3,10 @@ import { useAuth } from "../../hooks/UseAuth";
 import "./Auth.sass";
 import Login from "./Login/Login";
 import Registration from "./Registration/Registration";
-import { signOut } from "firebase/auth";
 
 const Auth: FC = () => {
   const [logType, setLogType] = useState<"login" | "reg">("login");
-  const isLogIn = useAuth((auth, user) => {
+  const isLogIn = useAuth((_, user) => {
     if (user) {
       window.location.replace("/");
     }

@@ -1,4 +1,4 @@
-import React, { FC, StrictMode, useState } from "react";
+import React, { FC, Profiler, StrictMode, useState } from "react";
 import "./App.sass";
 
 import ThemeProvider from "@mui/material/styles/ThemeProvider";
@@ -18,7 +18,6 @@ import useTheme from "@mui/material/styles/useTheme";
 const App: FC = () => {
   const themeHook = useTheme();
   const isMobile = useMediaQuery(themeHook.breakpoints.down("sm"));
-
   const [isSearchClicked, setClicked] = useState(false);
   function ClickHandler() {
     setClicked((a) => !a);
@@ -26,6 +25,7 @@ const App: FC = () => {
 
   return (
     <StrictMode>
+      {/* <Profiler id="PROFILER" onRender={(...a) => console.log(a)}> */}
       <BrowserRouter>
         <ThemeProvider theme={theme}>
           <Header isAuth ClickHandler={ClickHandler} />
@@ -49,6 +49,7 @@ const App: FC = () => {
           </div>
         </ThemeProvider>
       </BrowserRouter>
+      {/* </Profiler> */}
     </StrictMode>
   );
 };

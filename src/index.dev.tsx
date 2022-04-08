@@ -5,7 +5,7 @@ import "./sass/main.sass";
 console.log("DEVMODE");
 
 import { initializeApp } from "firebase/app";
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { getAuth } from "firebase/auth";
 import { FIREBASE_CONFIG } from "./ts/API";
 
 const app = initializeApp(FIREBASE_CONFIG);

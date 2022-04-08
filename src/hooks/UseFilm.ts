@@ -49,7 +49,6 @@ export function useFilm<T, P>(
       setData(isKept.data);
       return;
     }
-    console.log("IS FETCHING", StaticPath, queryString);
 
     fetch(
       `https://api.themoviedb.org/3/${StaticPath}?api_key=${API_KEY}${queryString}`,
@@ -70,7 +69,6 @@ export function useFilm<T, P>(
         }
       })
       .catch((error) => {
-        console.log("ERROR");
         if (isMount) setErrorMessage(error);
       });
     return () => {

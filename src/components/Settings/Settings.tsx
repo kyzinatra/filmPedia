@@ -73,7 +73,7 @@ const Settings: FC = () => {
         EmailAuthProvider.credential(user.email || "", passConfirm)
       )
         .then(() => deleteUser(user))
-        .then((a) => location.replace("/"))
+        .then((a) => location.replace("/filmpedia/"))
         .catch(() => {
           setDialog(false);
           setInform({
@@ -116,7 +116,7 @@ const Settings: FC = () => {
   // check user
   const isLogIn = useAuth((_, user) => {
     if (!user) {
-      window.location.replace("/");
+      window.location.replace("/filmpedia/");
     }
   });
 

@@ -20,7 +20,7 @@ const LogOut: FC<ILogOut> = ({ setInform }) => {
   const logOut = useAuth((auth) => {
     if (auth) {
       signOut(auth)
-        .then(() => location.replace("/"))
+        .then(() => location.replace("/filmpedia/"))
         .catch((e) =>
           setInform({ text: "Something went wrong!", color: "error" })
         );

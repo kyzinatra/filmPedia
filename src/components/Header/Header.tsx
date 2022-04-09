@@ -65,11 +65,11 @@ const Header: FC<IHeader> = ({ isAuth, ClickHandler }) => {
               <Box className="header">
                 <div className="header__profile">
                   {userData instanceof Object ? (
-                    <Link to={"/"} tabIndex={-1}>
+                    <Link to={"/filmpedia/"} tabIndex={-1}>
                       <Avatar title={userData.displayName} href={photo} />
                     </Link>
                   ) : (
-                    <Link to={"/auth"} tabIndex={-1}>
+                    <Link to={"/filmpedia/auth"} tabIndex={-1}>
                       <NavButton title="Log in" icon={StyledLoginIcon} />
                     </Link>
                   )}
@@ -81,13 +81,13 @@ const Header: FC<IHeader> = ({ isAuth, ClickHandler }) => {
                     onClick={ClickHandler}
                     icon={StyledSearchIcon}
                   />
-                  <Link to={"/favorite"} tabIndex={-1}>
+                  <Link to={"/filmpedia/favorite"} tabIndex={-1}>
                     <NavButton title="Favorite" icon={StyledFavoriteIcon} />
                   </Link>
-                  <Link to={"/chat"} tabIndex={-1}>
+                  <Link to={"/filmpedia/chat"} tabIndex={-1}>
                     <NavButton title="Chat" icon={StyledChatIcon} />
                   </Link>
-                  <Link to={"/settings"} tabIndex={-1}>
+                  <Link to={"/filmpedia/settings"} tabIndex={-1}>
                     <NavButton title="Settings" icon={StyledSettingsIcon} />
                   </Link>
                 </div>

@@ -40,10 +40,10 @@ const App: FC = () => {
                 path="/"
                 element={<Main isSearchOpen={isSearchClicked} />}
               />
-              <Route path="/settings" element={<Settings />} />
-              <Route path="/auth" element={<Auth />} />
-              <Route path="/chat" element={<Chat />} />
-              <Route path="/favorite" element={<Favorite />} />
+              <Route path="/filmpedia/settings" element={<Settings />} />
+              <Route path="/filmpedia/auth" element={<Auth />} />
+              <Route path="/filmpedia/chat" element={<Chat />} />
+              <Route path="/filmpedia/favorite" element={<Favorite />} />
             </Routes>
             <Footer />
           </div>

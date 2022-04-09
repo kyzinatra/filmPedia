@@ -8,7 +8,7 @@ const Auth: FC = () => {
   const [logType, setLogType] = useState<"login" | "reg">("login");
   const isLogIn = useAuth((_, user) => {
     if (user) {
-      window.location.replace("/");
+      window.location.replace("/filmpedia/");
     }
   });
 

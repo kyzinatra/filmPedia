@@ -37,7 +37,7 @@ const App: FC = () => {
           >
             <Routes>
               <Route
-                path="/"
+                path="/filmPedia"
                 element={<Main isSearchOpen={isSearchClicked} />}
               />
               <Route path="/filmPedia/settings" element={<Settings />} />

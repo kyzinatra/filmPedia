@@ -65,11 +65,11 @@ const Header: FC<IHeader> = ({ isAuth, ClickHandler }) => {
               <Box className="header">
                 <div className="header__profile">
                   {userData instanceof Object ? (
-                    <Link to={"/filmpedia/"} tabIndex={-1}>
+                    <Link to={"/filmPedia/"} tabIndex={-1}>
                       <Avatar title={userData.displayName} href={photo} />
                     </Link>
                   ) : (
-                    <Link to={"/filmpedia/auth"} tabIndex={-1}>
+                    <Link to={"/filmPedia/auth"} tabIndex={-1}>
                       <NavButton title="Log in" icon={StyledLoginIcon} />
                     </Link>
                   )}

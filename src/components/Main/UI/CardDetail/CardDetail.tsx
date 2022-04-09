@@ -17,10 +17,17 @@ interface ICardDetail {
   resetId: () => void;
   id?: number | null;
   type?: string | null;
+  location?: string;
 }
 
-const CardDetail: FC<ICardDetail> = ({ id, type = "movie", resetId }) => {
+const CardDetail: FC<ICardDetail> = ({
+  id,
+  type = "movie",
+  resetId,
+  location = "/",
+}) => {
   const [isOpen, setOpen] = useState(false);
+  console.log(type, id);
   const [data, err] = useFilm<IMoveDetail & ITVDetail, IMoveDetail & ITVDetail>(
     `/${type}/${id}`,
     {},
@@ -35,7 +42,7 @@ const CardDetail: FC<ICardDetail> = ({ id, type = "movie", resetId }) => {
   }, [isOpen, id]);
 
   function handleClose() {
-    window.history.pushState({}, "closeModal", "/");
+    window.history.pushState({}, "closeModal", location);
     setOpen(false);
     resetId();
   }

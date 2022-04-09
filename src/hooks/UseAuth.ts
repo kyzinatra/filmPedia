@@ -13,7 +13,7 @@ export function useAuth(fn: (auth: Auth, user?: User | null) => void) {
     });
     return () => unsub();
   }, [fn.toString()]);
-  const authData = fnData[0];
 
+  const authData = fnData[0];
   return authData ? () => fn.apply(null, [authData, fnData[1]]) : null;
 }

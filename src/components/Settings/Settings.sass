@@ -9,5 +9,22 @@
     grid-gap: 2em 4em
   &__control
     margin: auto
+    display: flex
+    width: 80%
+    justify-content: space-around
+    flex-wrap: wrap
     & > button
-      margin-left: 20px
+      margin-bottom: 20px
+      font-size: 1rem
+      padding: 10px 30px
+
+
+@media (max-width: 600px)
+  .settings
+    &__content
+      grid-template-columns: 1fr
+    &__control
+      flex-wrap: nowrap
+      flex-direction: column
+      & > button
+        font-size: 1.4rem
